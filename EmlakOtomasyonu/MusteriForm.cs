@@ -88,32 +88,31 @@ namespace EmlakOtomasyonu
                 {
                     script += "and io.tuvaletBanyoSayi='" + cbxMAramaTuvaletBanyo.Text + "'";
                 }
+
+
+                //En son elde edilen script'e göre tabloya yeni bilgiler dolacak.
+                //Aşağıdaki işlemlerin hepsi databaseden bilgi çekebilmek için kullanılmıştır.
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand command = new SqlCommand();
+                command.CommandText = script;
+                command.Connection = baglanti;
+                adapter.SelectCommand = command;
+                baglanti.Open();
+                adapter.Fill(dt);
+                dgwDetayliArama.DataSource = dt;
+                baglanti.Close();
+                //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
+                dgwDetayliArama.Columns[0].Visible = false;
+                //Tablonun başındaki boşluk gözükmesin diye kullandık.
+                dgwDetayliArama.RowHeadersVisible = false;
+                //Verileri tabloya sığdırmak için kullandık.
+                dgwDetayliArama.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
             }
-            
-            
-
-            //En son elde edilen script'e göre tabloya yeni bilgiler dolacak.
-            //Aşağıdaki işlemlerin hepsi databaseden bilgi çekebilmek için kullanılmıştır.
-            DataTable dt = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = script;
-            command.Connection = baglanti;
-            adapter.SelectCommand = command;
-            baglanti.Open();
-            adapter.Fill(dt);
-            dgwDetayliArama.DataSource = dt;
-            baglanti.Close();
-            //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
-            dgwDetayliArama.Columns[0].Visible = false;
-            //Tablonun başındaki boşluk gözükmesin diye kullandık.
-            dgwDetayliArama.RowHeadersVisible = false;
-            //Verileri tabloya sığdırmak için kullandık.
-            dgwDetayliArama.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         //Bu methodu comboboxların içerisine hazır değerleri kullanabilmek için atama işlemi yapsın diye tanımladım.
@@ -165,7 +164,7 @@ namespace EmlakOtomasyonu
             rdMApartmanArama.Checked = false;
             cbxMAramaTuvaletBanyo.Text = "";
             cbxMAramaOdaSalon.Text = "";
-            
+
         }
 
         private void btnMIlanAra_Click(object sender, EventArgs e)

@@ -104,169 +104,201 @@ namespace EmlakOtomasyonu
 
         private void btnMustakilIlanVer_Click(object sender, EventArgs e)
         {
-
-            //Nesnenin alanlarına ilgili atamaları gerçekleştirmek için değişkenlere değerlerini atadım.
-            konutTipi = "Mustakil";
-            kullaniciID = Convert.ToInt32(lblKullaniciID.Text);
-            ilanBaslik = txtMustakilBaslik.Text;
-            metrekare = Convert.ToInt32(txtMustakilMetrekare.Text);
-            fiyat = Convert.ToDouble(txtMustakilFiyat.Text);
-            odaSalonSayi = txtMustakilOdaSalon.Text;
-            balkonSayi = Convert.ToInt32(txtMustakilBalkon.Text);
-            katSayi = Convert.ToInt32(txtMustakilKat.Text);
-            tuvaletBanyoSayi = txtMustakilTuvaletBanyo.Text;
-
-            //Hangi ilan tipinin seçildiğini anlamak için bir switch-case tanımladım.
-            switch (rdMustakilSatilik.Checked)
+            try
             {
-                //Satılık radio butonu seçili olduğunda ilan tipini Satılık yapsın diye yazdım.
-                case true:
-                    ilanTipi = "Satılık";
-                    break;
-                //Kiralık radio butonu seçili olduğunda ilan tipini Satılık yapsın diye yazdım.
-                case false:
-                    ilanTipi = "Kiralık";
-                    break;
-            }
+                //Nesnenin alanlarına ilgili atamaları gerçekleştirmek için değişkenlere değerlerini atadım.
+                konutTipi = "Mustakil";
+                kullaniciID = Convert.ToInt32(lblKullaniciID.Text);
+                ilanBaslik = txtMustakilBaslik.Text;
+                metrekare = Convert.ToInt32(txtMustakilMetrekare.Text);
+                fiyat = Convert.ToDouble(txtMustakilFiyat.Text);
+                odaSalonSayi = txtMustakilOdaSalon.Text;
+                balkonSayi = Convert.ToInt32(txtMustakilBalkon.Text);
+                katSayi = Convert.ToInt32(txtMustakilKat.Text);
+                tuvaletBanyoSayi = txtMustakilTuvaletBanyo.Text;
 
-            //Mustakil Nesnesi tanımladım.
-            Mustakil m = new Mustakil(ilanBaslik, metrekare, fiyat, odaSalonSayi, tuvaletBanyoSayi, balkonSayi, katSayi, ilanTipi, kullaniciID, konutTipi);
-            
-            //Mustakil nesnesindeki KonutEkle metoduyla nesnedeki alanları kullanarak ekleme işlemi yapıyor.
-            //Başarılı olursa ekleme geriye doğru değeri dönüyor.
-            //Ve başarılı olduğuna dair bir bilgi döndürüyor.
-            if (m.KonutEkle())
-            {
-                MessageBox.Show("Ekleme Başarılı");
+                //Hangi ilan tipinin seçildiğini anlamak için bir switch-case tanımladım.
+                switch (rdMustakilSatilik.Checked)
+                {
+                    //Satılık radio butonu seçili olduğunda ilan tipini Satılık yapsın diye yazdım.
+                    case true:
+                        ilanTipi = "Satılık";
+                        break;
+                    //Kiralık radio butonu seçili olduğunda ilan tipini Satılık yapsın diye yazdım.
+                    case false:
+                        ilanTipi = "Kiralık";
+                        break;
+                }
+
+                //Mustakil Nesnesi tanımladım.
+                Mustakil m = new Mustakil(ilanBaslik, metrekare, fiyat, odaSalonSayi, tuvaletBanyoSayi, balkonSayi, katSayi, ilanTipi, kullaniciID, konutTipi);
+
+                //Mustakil nesnesindeki KonutEkle metoduyla nesnedeki alanları kullanarak ekleme işlemi yapıyor.
+                //Başarılı olursa ekleme geriye doğru değeri dönüyor.
+                //Ve başarılı olduğuna dair bir bilgi döndürüyor.
+                if (m.KonutEkle())
+                {
+                    MessageBox.Show("Ekleme Başarılı");
+                }
+                //Bu methodla da İlanların bulunduğu tablodaki bilgiler doluyor.
+                MustakilDoldur();
             }
-            //Bu methodla da İlanların bulunduğu tablodaki bilgiler doluyor.
-            MustakilDoldur();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
+            }
 
         }
         private void btnApartmanIlanVer_Click(object sender, EventArgs e)
         {
-            //Nesnenin alanlarına ilgili atamaları gerçekleştirmek için değişkenlere değerlerini atadım.
-            konutTipi = "Apartman";
-            kullaniciID = Convert.ToInt32(lblKullaniciID.Text);
-            ilanBaslik = txtApartmanBaslik.Text;
-            metrekare = Convert.ToInt32(txtApartmanMetrekare.Text);
-            fiyat = Convert.ToDouble(txtApartmanFiyat.Text);
-            odaSalonSayi = txtApartmanOdaSalon.Text;
-            balkonSayi = Convert.ToInt32(txtApartmanBalkon.Text);
-            toplamDaireSayisi = Convert.ToInt32(txtApartmanToplamDaire.Text);
+            try
+            {
+                //Nesnenin alanlarına ilgili atamaları gerçekleştirmek için değişkenlere değerlerini atadım.
+                konutTipi = "Apartman";
+                kullaniciID = Convert.ToInt32(lblKullaniciID.Text);
+                ilanBaslik = txtApartmanBaslik.Text;
+                metrekare = Convert.ToInt32(txtApartmanMetrekare.Text);
+                fiyat = Convert.ToDouble(txtApartmanFiyat.Text);
+                odaSalonSayi = txtApartmanOdaSalon.Text;
+                balkonSayi = Convert.ToInt32(txtApartmanBalkon.Text);
+                toplamDaireSayisi = Convert.ToInt32(txtApartmanToplamDaire.Text);
 
-            //Hangi ilan tipinin seçildiğini anlamak için bir switch-case tanımladım.
-            switch (rdApartmanSatilik.Checked)
-            {
-                //Satılık radio butonu seçili olduğunda ilan tipini Satılık yapsın diye yazdım.
-                case true:
-                    ilanTipi = "Satılık";
-                    break;
-                //Kiralık radio butonu seçili olduğunda ilan tipini Satılık yapsın diye yazdım.
-                case false:
-                    ilanTipi = "Kiralık";
-                    break;
+                //Hangi ilan tipinin seçildiğini anlamak için bir switch-case tanımladım.
+                switch (rdApartmanSatilik.Checked)
+                {
+                    //Satılık radio butonu seçili olduğunda ilan tipini Satılık yapsın diye yazdım.
+                    case true:
+                        ilanTipi = "Satılık";
+                        break;
+                    //Kiralık radio butonu seçili olduğunda ilan tipini Satılık yapsın diye yazdım.
+                    case false:
+                        ilanTipi = "Kiralık";
+                        break;
+                }
+
+                Apartman a = new Apartman(ilanBaslik, metrekare, fiyat, odaSalonSayi, toplamDaireSayisi, balkonSayi, ilanTipi, kullaniciID, konutTipi);
+
+                //Apartman nesnesindeki KonutEkle metoduyla nesnedeki alanları kullanarak ekleme işlemi yapıyor.
+                //Başarılı olursa ekleme geriye doğru değeri dönüyor.
+                //Ve başarılı olduğuna dair bir bilgi döndürüyor.
+                if (a.KonutEkle())
+                {
+                    MessageBox.Show("Ekleme Başarılı");
+                }
+                //Bu methodla da İlanların bulunduğu tablodaki bilgiler doluyor.
+                ApartmanDoldur();
             }
-            
-            Apartman a = new Apartman(ilanBaslik,metrekare,fiyat,odaSalonSayi,toplamDaireSayisi,balkonSayi,ilanTipi,kullaniciID,konutTipi);
-            
-            //Apartman nesnesindeki KonutEkle metoduyla nesnedeki alanları kullanarak ekleme işlemi yapıyor.
-            //Başarılı olursa ekleme geriye doğru değeri dönüyor.
-            //Ve başarılı olduğuna dair bir bilgi döndürüyor.
-            if (a.KonutEkle())
+            catch (Exception ex)
             {
-                MessageBox.Show("Ekleme Başarılı");
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
             }
-            //Bu methodla da İlanların bulunduğu tablodaki bilgiler doluyor.
-            ApartmanDoldur();
         }
         private void btnDaireIlanVer_Click(object sender, EventArgs e)
         {
-            
-            //Nesnenin alanlarına ilgili atamaları gerçekleştirmek için değişkenlere değerlerini atadım.
-            konutTipi = "Daire";
-            kullaniciID = Convert.ToInt32(lblKullaniciID.Text);
-            ilanBaslik = txtDaireBaslik.Text;
-            metrekare = Convert.ToInt32(txtDaireMetrekare.Text);
-            fiyat = Convert.ToDouble(txtDaireFiyat.Text);
-            odaSalonSayi = txtDaireOdaSalon.Text;
-            balkonSayi = Convert.ToInt32(txtDaireBalkon.Text);
-            tuvaletBanyoSayi = txtDaireTuvaletBanyo.Text;
+            try
+            {
+                //Nesnenin alanlarına ilgili atamaları gerçekleştirmek için değişkenlere değerlerini atadım.
+                konutTipi = "Daire";
+                kullaniciID = Convert.ToInt32(lblKullaniciID.Text);
+                ilanBaslik = txtDaireBaslik.Text;
+                metrekare = Convert.ToInt32(txtDaireMetrekare.Text);
+                fiyat = Convert.ToDouble(txtDaireFiyat.Text);
+                odaSalonSayi = txtDaireOdaSalon.Text;
+                balkonSayi = Convert.ToInt32(txtDaireBalkon.Text);
+                tuvaletBanyoSayi = txtDaireTuvaletBanyo.Text;
 
-            //Hangi ilan tipinin seçildiğini anlamak için bir switch-case tanımladım.
-            switch (rdDaireSatilik.Checked)
-            {
-                //Satılık radio butonu seçili olduğunda ilan tipini Satılık yapsın diye yazdım.
-                case true:
-                    ilanTipi = "Satılık";
-                    break;
-                //Kiralık radio butonu seçili olduğunda ilan tipini Satılık yapsın diye yazdım.
-                case false:
-                    ilanTipi = "Kiralık";
-                    break;
+                //Hangi ilan tipinin seçildiğini anlamak için bir switch-case tanımladım.
+                switch (rdDaireSatilik.Checked)
+                {
+                    //Satılık radio butonu seçili olduğunda ilan tipini Satılık yapsın diye yazdım.
+                    case true:
+                        ilanTipi = "Satılık";
+                        break;
+                    //Kiralık radio butonu seçili olduğunda ilan tipini Satılık yapsın diye yazdım.
+                    case false:
+                        ilanTipi = "Kiralık";
+                        break;
+                }
+                //Daire Nesnesi tanımladım.
+                Daire d = new Daire(ilanBaslik, metrekare, fiyat, odaSalonSayi, tuvaletBanyoSayi, balkonSayi, ilanTipi, kullaniciID, konutTipi);
+
+                //Daire nesnesindeki KonutEkle metoduyla nesnedeki alanları kullanarak ekleme işlemi yapıyor.
+                //Başarılı olursa ekleme geriye doğru değeri dönüyor.
+                //Ve başarılı olduğuna dair bir bilgi döndürüyor.
+                if (d.KonutEkle())
+                {
+                    MessageBox.Show("Ekleme Başarılı");
+                }
+                //Bu methodla da İlanların bulunduğu tablodaki bilgiler doluyor.
+                DaireDoldur();
             }
-            //Daire Nesnesi tanımladım.
-            Daire d = new Daire(ilanBaslik, metrekare, fiyat, odaSalonSayi, tuvaletBanyoSayi, balkonSayi, ilanTipi, kullaniciID, konutTipi);
-            
-            //Daire nesnesindeki KonutEkle metoduyla nesnedeki alanları kullanarak ekleme işlemi yapıyor.
-            //Başarılı olursa ekleme geriye doğru değeri dönüyor.
-            //Ve başarılı olduğuna dair bir bilgi döndürüyor.
-            if (d.KonutEkle())
+            catch (Exception ex)
             {
-                MessageBox.Show("Ekleme Başarılı");
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
             }
-            //Bu methodla da İlanların bulunduğu tablodaki bilgiler doluyor.
-            DaireDoldur();
         }
 
         //Bu methodu Kendi ilanlarım kısmındaki tablonun içerisini doldurmak için tanımladım.
         public void MustakilDoldur()
         {
-            //Sql sorgumuzu yazdım.
-            //Bu sorguda Kullanici id'ye ve konu tipi müstakil olanlara göre gayrimenkulcülerin yayınladıkları ilanları getirdim.
-            string sql = "SELECT ilan_id, ilanBaslik as [İlan Başlığı],metrekare as Metrekare,odaSalonSayi as [Oda Salon],balkonSayi as Balkon,katSayi as [Kat Sayısı],tuvaletBanyoSayi as [Tuvalet Banyo],ilanTipi as [İlan Tipi],KonutTipi as [Konut Tipi],Fiyat from Ilan_Ozellikleri where KonutTipi='Mustakil' and kullanici_id='" + lblKullaniciID.Text + "'";
-            //Sql'den alınan bilgileri datagridview'e göndermek için aşağıdaki işlemleri yapıyoruz.
-            DataTable dt = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = sql;
-            command.Connection = baglanti;
-            adapter.SelectCommand = command;
-            baglanti.Open();
-            adapter.Fill(dt);
-            dgwMustakil.DataSource = dt;
-            baglanti.Close();
-            //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
-            dgwMustakil.Columns[0].Visible = false;
-            //Tablonun başındaki boşluk gözükmesin diye kullandık.
-            dgwMustakil.RowHeadersVisible = false;
-            //Verileri tabloya sığdırmak için kullandık.
-            dgwMustakil.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+            try
+            {
+                //Sql sorgumuzu yazdım.
+                //Bu sorguda Kullanici id'ye ve konu tipi müstakil olanlara göre gayrimenkulcülerin yayınladıkları ilanları getirdim.
+                string sql = "SELECT ilan_id, ilanBaslik as [İlan Başlığı],metrekare as Metrekare,odaSalonSayi as [Oda Salon],balkonSayi as Balkon,katSayi as [Kat Sayısı],tuvaletBanyoSayi as [Tuvalet Banyo],ilanTipi as [İlan Tipi],KonutTipi as [Konut Tipi],Fiyat from Ilan_Ozellikleri where KonutTipi='Mustakil' and kullanici_id='" + lblKullaniciID.Text + "'";
+                //Sql'den alınan bilgileri datagridview'e göndermek için aşağıdaki işlemleri yapıyoruz.
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand command = new SqlCommand();
+                command.CommandText = sql;
+                command.Connection = baglanti;
+                adapter.SelectCommand = command;
+                baglanti.Open();
+                adapter.Fill(dt);
+                dgwMustakil.DataSource = dt;
+                baglanti.Close();
+                //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
+                dgwMustakil.Columns[0].Visible = false;
+                //Tablonun başındaki boşluk gözükmesin diye kullandık.
+                dgwMustakil.RowHeadersVisible = false;
+                //Verileri tabloya sığdırmak için kullandık.
+                dgwMustakil.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
+            }
         }
         //Bu methodu Kendi ilanlarım kısmındaki tablonun içerisinde İlan Başlığına göre arama yapabilmesi için yazdım.
         public void MustakilAra()
         {
-            //Sql sorgumuzu yazdım.
-            //Bu sorguda Kullanici id'ye,ilan başlığına ve konut tipi müstakil olana göre gayrimenkulcülerin yayınladıkları ilanları getirdim.
-            string sql = "SELECT ilan_id, ilanBaslik as [İlan Başlığı],metrekare as Metrekare,odaSalonSayi as [Oda Salon],balkonSayi as Balkon,katSayi as [Kat Sayısı],tuvaletBanyoSayi as [Tuvalet Banyo],ilanTipi as [İlan Tipi],KonutTipi as [Konut Tipi],Fiyat from Ilan_Ozellikleri where KonutTipi='Mustakil' and ilanBaslik Like '" + txtAraMustakil.Text + "%'and kullanici_id='" + lblKullaniciID.Text + "'";
-            //Sql'den alınan bilgileri datagridview'e göndermek için aşağıdaki işlemleri yapıyoruz.
-            DataTable dt = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = sql;
-            command.Connection = baglanti;
-            adapter.SelectCommand = command;
-            baglanti.Open();
-            adapter.Fill(dt);
-            dgwMustakil.DataSource = dt;
-            baglanti.Close();
-            //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
-            dgwMustakil.Columns[0].Visible = false;
-            //Tablonun başındaki boşluk gözükmesin diye kullandık.
-            dgwMustakil.RowHeadersVisible = false;
-            //Verileri tabloya sığdırmak için kullandık.
-            dgwMustakil.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            try
+            {
+                //Sql sorgumuzu yazdım.
+                //Bu sorguda Kullanici id'ye,ilan başlığına ve konut tipi müstakil olana göre gayrimenkulcülerin yayınladıkları ilanları getirdim.
+                string sql = "SELECT ilan_id, ilanBaslik as [İlan Başlığı],metrekare as Metrekare,odaSalonSayi as [Oda Salon],balkonSayi as Balkon,katSayi as [Kat Sayısı],tuvaletBanyoSayi as [Tuvalet Banyo],ilanTipi as [İlan Tipi],KonutTipi as [Konut Tipi],Fiyat from Ilan_Ozellikleri where KonutTipi='Mustakil' and ilanBaslik Like '" + txtAraMustakil.Text + "%'and kullanici_id='" + lblKullaniciID.Text + "'";
+                //Sql'den alınan bilgileri datagridview'e göndermek için aşağıdaki işlemleri yapıyoruz.
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand command = new SqlCommand();
+                command.CommandText = sql;
+                command.Connection = baglanti;
+                adapter.SelectCommand = command;
+                baglanti.Open();
+                adapter.Fill(dt);
+                dgwMustakil.DataSource = dt;
+                baglanti.Close();
+                //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
+                dgwMustakil.Columns[0].Visible = false;
+                //Tablonun başındaki boşluk gözükmesin diye kullandık.
+                dgwMustakil.RowHeadersVisible = false;
+                //Verileri tabloya sığdırmak için kullandık.
+                dgwMustakil.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
+            }
         }
 
         //Gayrimenkulcüler tüm ilanlar arasından spesifik bir arama yapabilsin diye tanımlandı.
@@ -338,129 +370,157 @@ namespace EmlakOtomasyonu
                 {
                     script += "and io.tuvaletBanyoSayi='" + cbxGAramaTuvaletBanyo.Text + "'";
                 }
-            }catch(Exception ex)
+
+                //En son elde edilen script'e göre tabloya yeni bilgiler dolacak.
+                //Aşağıdaki işlemlerin hepsi databaseden bilgi çekebilmek için kullanılmıştır.
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand command = new SqlCommand();
+                command.CommandText = script;
+                command.Connection = baglanti;
+                adapter.SelectCommand = command;
+                baglanti.Open();
+                adapter.Fill(dt);
+                dgwDetayliArama.DataSource = dt;
+                baglanti.Close();
+                //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
+                dgwDetayliArama.Columns[0].Visible = false;
+                //Tablonun başındaki boşluk gözükmesin diye kullandık.
+                dgwDetayliArama.RowHeadersVisible = false;
+                //Verileri tabloya sığdırmak için kullandık.
+                dgwDetayliArama.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
             }
-            
-
-            //En son elde edilen script'e göre tabloya yeni bilgiler dolacak.
-            //Aşağıdaki işlemlerin hepsi databaseden bilgi çekebilmek için kullanılmıştır.
-            DataTable dt = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = script;
-            command.Connection = baglanti;
-            adapter.SelectCommand = command;
-            baglanti.Open();
-            adapter.Fill(dt);
-            dgwDetayliArama.DataSource = dt;
-            baglanti.Close();
-            //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
-            dgwDetayliArama.Columns[0].Visible = false;
-            //Tablonun başındaki boşluk gözükmesin diye kullandık.
-            dgwDetayliArama.RowHeadersVisible = false;
-            //Verileri tabloya sığdırmak için kullandık.
-            dgwDetayliArama.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         //Bu methodu Kendi ilanlarım kısmındaki tablonun içerisini doldurmak için tanımladım.
         public void ApartmanDoldur()
         {
-            //Sql sorgumuzu yazdım.
-            //Bu sorguda Kullanici id'ye,ilan başlığına ve konut tipi apartman olana göre gayrimenkulcülerin yayınladıkları ilanları getirdim.
-            string sql = "SELECT ilan_id, ilanBaslik as [İlan Başlığı],metrekare as Metrekare,odaSalonSayi as [Oda Salon],balkonSayi as Balkon,toplamDaireSayi as [Toplam Daire Sayisi],ilanTipi as [İlan Tipi],KonutTipi as [Konut Tipi],Fiyat from Ilan_Ozellikleri where KonutTipi='Apartman' and kullanici_id='" + lblKullaniciID.Text + "'";
-            //Sql'den alınan bilgileri datagridview'e göndermek için aşağıdaki işlemleri yapıyoruz.
-            DataTable dt = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = sql;
-            command.Connection = baglanti;
-            adapter.SelectCommand = command;
-            baglanti.Open();
-            adapter.Fill(dt);
-            dgwApartman.DataSource = dt;
-            baglanti.Close();
-            //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
-            dgwApartman.Columns[0].Visible = false;
-            //Tablonun başındaki boşluk gözükmesin diye kullandık.
-            dgwApartman.RowHeadersVisible = false;
-            //Verileri tabloya sığdırmak için kullandık.
-            dgwApartman.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            try
+            {
+                //Sql sorgumuzu yazdım.
+                //Bu sorguda Kullanici id'ye,ilan başlığına ve konut tipi apartman olana göre gayrimenkulcülerin yayınladıkları ilanları getirdim.
+                string sql = "SELECT ilan_id, ilanBaslik as [İlan Başlığı],metrekare as Metrekare,odaSalonSayi as [Oda Salon],balkonSayi as Balkon,toplamDaireSayi as [Toplam Daire Sayisi],ilanTipi as [İlan Tipi],KonutTipi as [Konut Tipi],Fiyat from Ilan_Ozellikleri where KonutTipi='Apartman' and kullanici_id='" + lblKullaniciID.Text + "'";
+                //Sql'den alınan bilgileri datagridview'e göndermek için aşağıdaki işlemleri yapıyoruz.
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand command = new SqlCommand();
+                command.CommandText = sql;
+                command.Connection = baglanti;
+                adapter.SelectCommand = command;
+                baglanti.Open();
+                adapter.Fill(dt);
+                dgwApartman.DataSource = dt;
+                baglanti.Close();
+                //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
+                dgwApartman.Columns[0].Visible = false;
+                //Tablonun başındaki boşluk gözükmesin diye kullandık.
+                dgwApartman.RowHeadersVisible = false;
+                //Verileri tabloya sığdırmak için kullandık.
+                dgwApartman.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
+            }
         }
         //Bu methodu Kendi ilanlarım kısmındaki tablonun içerisinde İlan Başlığına göre arama yapabilmesi için yazdım.
         public void ApartmanAra()
         {
-            //Sql sorgumuzu yazdım.
-            //Bu sorguda Kullanici id'ye,ilan başlığına ve konut tipi apartman olana göre gayrimenkulcülerin yayınladıkları ilanları getirdim.
-            string sql = "SELECT ilan_id, ilanBaslik as [İlan Başlığı],metrekare as Metrekare,odaSalonSayi as [Oda Salon],balkonSayi as Balkon,toplamDaireSayi as [Toplam Daire Sayisi],ilanTipi as [İlan Tipi],KonutTipi as [Konut Tipi],Fiyat from Ilan_Ozellikleri where KonutTipi='Apartman' and ilanBaslik Like '" + txtAraApartman.Text + "%'and kullanici_id='" + lblKullaniciID.Text + "'";
-            //Sql'den alınan bilgileri datagridview'e göndermek için aşağıdaki işlemleri yapıyoruz.
-            DataTable dt = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = sql;
-            command.Connection = baglanti;
-            adapter.SelectCommand = command;
-            baglanti.Open();
-            adapter.Fill(dt);
-            dgwApartman.DataSource = dt;
-            baglanti.Close();
-            //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
-            dgwApartman.Columns[0].Visible = false;
-            //Tablonun başındaki boşluk gözükmesin diye kullandık.
-            dgwApartman.RowHeadersVisible = false;
-            //Verileri tabloya sığdırmak için kullandık.
-            dgwApartman.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            try
+            {
+                //Sql sorgumuzu yazdım.
+                //Bu sorguda Kullanici id'ye,ilan başlığına ve konut tipi apartman olana göre gayrimenkulcülerin yayınladıkları ilanları getirdim.
+                string sql = "SELECT ilan_id, ilanBaslik as [İlan Başlığı],metrekare as Metrekare,odaSalonSayi as [Oda Salon],balkonSayi as Balkon,toplamDaireSayi as [Toplam Daire Sayisi],ilanTipi as [İlan Tipi],KonutTipi as [Konut Tipi],Fiyat from Ilan_Ozellikleri where KonutTipi='Apartman' and ilanBaslik Like '" + txtAraApartman.Text + "%'and kullanici_id='" + lblKullaniciID.Text + "'";
+                //Sql'den alınan bilgileri datagridview'e göndermek için aşağıdaki işlemleri yapıyoruz.
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand command = new SqlCommand();
+                command.CommandText = sql;
+                command.Connection = baglanti;
+                adapter.SelectCommand = command;
+                baglanti.Open();
+                adapter.Fill(dt);
+                dgwApartman.DataSource = dt;
+                baglanti.Close();
+                //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
+                dgwApartman.Columns[0].Visible = false;
+                //Tablonun başındaki boşluk gözükmesin diye kullandık.
+                dgwApartman.RowHeadersVisible = false;
+                //Verileri tabloya sığdırmak için kullandık.
+                dgwApartman.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
+            }
         }
 
         //Bu methodu Kendi ilanlarım kısmındaki tablonun içerisini doldurmak için tanımladım.
         public void DaireDoldur()
         {
-            //Sql sorgumuzu yazdım.
-            //Bu sorguda Kullanici id'ye,ilan başlığına ve konut tipi daire olana göre gayrimenkulcülerin yayınladıkları ilanları getirdim.
-            string sql = "SELECT ilan_id, ilanBaslik as [İlan Başlığı],metrekare as Metrekare,odaSalonSayi as [Oda Salon],balkonSayi as Balkon,tuvaletBanyoSayi as [Tuvalet Banyo],ilanTipi as [İlan Tipi],KonutTipi as [Konut Tipi],Fiyat from Ilan_Ozellikleri where KonutTipi='Daire'and kullanici_id='" + lblKullaniciID.Text + "'";
-            //Sql'den alınan bilgileri datagridview'e göndermek için aşağıdaki işlemleri yapıyoruz.
-            DataTable dt = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = sql;
-            command.Connection = baglanti;
-            adapter.SelectCommand = command;
-            baglanti.Open();
-            adapter.Fill(dt);
-            dgwDaire.DataSource = dt;
-            baglanti.Close();
-            //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
-            dgwDaire.Columns[0].Visible = false;
-            //Tablonun başındaki boşluk gözükmesin diye kullandık.
-            dgwDaire.RowHeadersVisible = false;
-            //Verileri tabloya sığdırmak için kullandık.
-            dgwDaire.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            try
+            {
+                //Sql sorgumuzu yazdım.
+                //Bu sorguda Kullanici id'ye,ilan başlığına ve konut tipi daire olana göre gayrimenkulcülerin yayınladıkları ilanları getirdim.
+                string sql = "SELECT ilan_id, ilanBaslik as [İlan Başlığı],metrekare as Metrekare,odaSalonSayi as [Oda Salon],balkonSayi as Balkon,tuvaletBanyoSayi as [Tuvalet Banyo],ilanTipi as [İlan Tipi],KonutTipi as [Konut Tipi],Fiyat from Ilan_Ozellikleri where KonutTipi='Daire'and kullanici_id='" + lblKullaniciID.Text + "'";
+                //Sql'den alınan bilgileri datagridview'e göndermek için aşağıdaki işlemleri yapıyoruz.
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand command = new SqlCommand();
+                command.CommandText = sql;
+                command.Connection = baglanti;
+                adapter.SelectCommand = command;
+                baglanti.Open();
+                adapter.Fill(dt);
+                dgwDaire.DataSource = dt;
+                baglanti.Close();
+                //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
+                dgwDaire.Columns[0].Visible = false;
+                //Tablonun başındaki boşluk gözükmesin diye kullandık.
+                dgwDaire.RowHeadersVisible = false;
+                //Verileri tabloya sığdırmak için kullandık.
+                dgwDaire.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
+            }
         }
 
         //Bu methodu Kendi ilanlarım kısmındaki tablonun içerisinde İlan Başlığına göre arama yapabilmesi için yazdım.
         public void DaireAra()
         {
-            //Sql sorgumuzu yazdım.
-            //Bu sorguda Kullanici id'ye,ilan başlığına ve konut tipi daire olana göre gayrimenkulcülerin yayınladıkları ilanları getirdim.
-            string sql = "SELECT ilan_id, ilanBaslik as [İlan Başlığı],metrekare as Metrekare,odaSalonSayi as [Oda Salon],balkonSayi as Balkon,tuvaletBanyoSayi as [Tuvalet Banyo],ilanTipi as [İlan Tipi],KonutTipi as [Konut Tipi],Fiyat from Ilan_Ozellikleri where KonutTipi='Daire' and ilanBaslik Like '" + txtAraDaire.Text + "%'and kullanici_id='" + lblKullaniciID.Text + "'";
-            //Sql'den alınan bilgileri datagridview'e göndermek için aşağıdaki işlemleri yapıyoruz.
-            DataTable dt = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = sql;
-            command.Connection = baglanti;
-            adapter.SelectCommand = command;
-            baglanti.Open();
-            adapter.Fill(dt);
-            dgwDaire.DataSource = dt;
-            baglanti.Close();
-            //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
-            dgwDaire.Columns[0].Visible = false;
-            //Tablonun başındaki boşluk gözükmesin diye kullandık.
-            dgwDaire.RowHeadersVisible = false;
-            //Verileri tabloya sığdırmak için kullandık.
-            dgwDaire.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            try
+            {
+                //Sql sorgumuzu yazdım.
+                //Bu sorguda Kullanici id'ye,ilan başlığına ve konut tipi daire olana göre gayrimenkulcülerin yayınladıkları ilanları getirdim.
+                string sql = "SELECT ilan_id, ilanBaslik as [İlan Başlığı],metrekare as Metrekare,odaSalonSayi as [Oda Salon],balkonSayi as Balkon,tuvaletBanyoSayi as [Tuvalet Banyo],ilanTipi as [İlan Tipi],KonutTipi as [Konut Tipi],Fiyat from Ilan_Ozellikleri where KonutTipi='Daire' and ilanBaslik Like '" + txtAraDaire.Text + "%'and kullanici_id='" + lblKullaniciID.Text + "'";
+                //Sql'den alınan bilgileri datagridview'e göndermek için aşağıdaki işlemleri yapıyoruz.
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand command = new SqlCommand();
+                command.CommandText = sql;
+                command.Connection = baglanti;
+                adapter.SelectCommand = command;
+                baglanti.Open();
+                adapter.Fill(dt);
+                dgwDaire.DataSource = dt;
+                baglanti.Close();
+                //İlan özelliklerinin id kısmıyla kullanıcının hiçbir işi yok. Bu yüzden onu gönderirken kapattık.
+                dgwDaire.Columns[0].Visible = false;
+                //Tablonun başındaki boşluk gözükmesin diye kullandık.
+                dgwDaire.RowHeadersVisible = false;
+                //Verileri tabloya sığdırmak için kullandık.
+                dgwDaire.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
+            }
         }
 
         //Bu methodu comboboxların içerisine hazır değerleri kullanabilmek için atama işlemi yapsın diye tanımladım.
@@ -537,41 +597,47 @@ namespace EmlakOtomasyonu
 
         private void btnMustakilGuncelle_Click(object sender, EventArgs e)
         {
-
-            //Nesnenin alanlarına ilgili atamaları gerçekleştirmek için değişkenlere değerlerini atadım.
-            konutTipi = "Mustakil";
-            ilanID = Convert.ToInt32(txtIlanID.Text);
-            ilanBaslik = txtMustakilBaslik.Text;
-            metrekare = Convert.ToInt32(txtMustakilMetrekare.Text);
-            fiyat = Convert.ToDouble(txtMustakilFiyat.Text);
-            odaSalonSayi = txtMustakilOdaSalon.Text;
-            balkonSayi = Convert.ToInt32(txtMustakilBalkon.Text);
-            katSayi = Convert.ToInt32(txtMustakilKat.Text);
-            tuvaletBanyoSayi = txtMustakilTuvaletBanyo.Text;
-
-            //Satılık radio butonu seçiliyse ilanTipi'ni Satılık yapması için yazdım.
-            if (rdMustakilSatilik.Checked)
+            try
             {
-                ilanTipi = "Satılık";
+                //Nesnenin alanlarına ilgili atamaları gerçekleştirmek için değişkenlere değerlerini atadım.
+                konutTipi = "Mustakil";
+                ilanID = Convert.ToInt32(txtIlanID.Text);
+                ilanBaslik = txtMustakilBaslik.Text;
+                metrekare = Convert.ToInt32(txtMustakilMetrekare.Text);
+                fiyat = Convert.ToDouble(txtMustakilFiyat.Text);
+                odaSalonSayi = txtMustakilOdaSalon.Text;
+                balkonSayi = Convert.ToInt32(txtMustakilBalkon.Text);
+                katSayi = Convert.ToInt32(txtMustakilKat.Text);
+                tuvaletBanyoSayi = txtMustakilTuvaletBanyo.Text;
+
+                //Satılık radio butonu seçiliyse ilanTipi'ni Satılık yapması için yazdım.
+                if (rdMustakilSatilik.Checked)
+                {
+                    ilanTipi = "Satılık";
+                }
+                //Kiralık radio butonu seçiliyse ilanTipi'ni Kiralık yapması için yazdım.
+                else if (rdMustakilKiralik.Checked)
+                {
+                    ilanTipi = "Kiralık";
+                }
+
+                //Mustakil Nesnesi tanımladım.(ilanID'li olanı tanımladım çünkü güncellemeyi ilan id'ye göre yapıyor benim bu nesnede ihtiyacım olacak.)
+                Mustakil m = new Mustakil(ilanID, ilanBaslik, metrekare, fiyat, odaSalonSayi, tuvaletBanyoSayi, balkonSayi, katSayi, ilanTipi, kullaniciID, konutTipi);
+
+                //Nesneden aldığı bilgileri kullanarak seçili olan ilan id'sine göre güncelleme yapıyor.
+                //Aşağıdaki method başarılı olursa true değeri döndürüyor.
+                //True dönerse aşağıdaki gibi bir bildirim bastırıyoruz.
+                //Methodu sınıftan çağırdık.
+                if (m.Ilan_Guncelle())
+                {
+                    MessageBox.Show("Güncelleme Başarılı");
+                    //Daha sonra o güncellenmiş haliyle tekrar yazsın diye bu methodu çağırıyoruz.
+                    MustakilDoldur();
+                }
             }
-            //Kiralık radio butonu seçiliyse ilanTipi'ni Kiralık yapması için yazdım.
-            else if (rdMustakilKiralik.Checked)
+            catch (Exception ex)
             {
-                ilanTipi = "Kiralık";
-            }
-
-            //Mustakil Nesnesi tanımladım.(ilanID'li olanı tanımladım çünkü güncellemeyi ilan id'ye göre yapıyor benim bu nesnede ihtiyacım olacak.)
-            Mustakil m = new Mustakil(ilanID,ilanBaslik,metrekare,fiyat,odaSalonSayi,tuvaletBanyoSayi,balkonSayi,katSayi,ilanTipi,kullaniciID,konutTipi);
-            
-            //Nesneden aldığı bilgileri kullanarak seçili olan ilan id'sine göre güncelleme yapıyor.
-            //Aşağıdaki method başarılı olursa true değeri döndürüyor.
-            //True dönerse aşağıdaki gibi bir bildirim bastırıyoruz.
-            //Methodu sınıftan çağırdık.
-            if (m.Ilan_Guncelle())
-            {
-                MessageBox.Show("Güncelleme Başarılı");
-                //Daha sonra o güncellenmiş haliyle tekrar yazsın diye bu methodu çağırıyoruz.
-                MustakilDoldur();
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
             }
         }
 
@@ -579,69 +645,82 @@ namespace EmlakOtomasyonu
         //Bunu yapmamın nedeni güncelleme yaparken buradan seçip onda göre değerleri değiştirip tekrardan yerine koyması için yaptım.
         private void dgwMustakil_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            //seçilen indexteki tüm satırı seçsin diye tanımladım.
-            dgwMustakil.Rows[e.RowIndex].Selected = true;
-
-            //Eğer seçilmiş satır null'dan farklı ise ilgili alanları sutün sayılarına göre atayacak.
-            if (dgwMustakil.Rows[e.RowIndex].Cells[e.RowIndex].Value != null)
+            try
             {
-                txtIlanID.Text = (dgwMustakil.Rows[e.RowIndex].Cells[0].Value.ToString());
-                txtMustakilBaslik.Text = (dgwMustakil.Rows[e.RowIndex].Cells[1].Value.ToString());
-                txtMustakilMetrekare.Text = (dgwMustakil.Rows[e.RowIndex].Cells[2].Value.ToString());
-                txtMustakilOdaSalon.Text = (dgwMustakil.Rows[e.RowIndex].Cells[3].Value.ToString());
-                txtMustakilBalkon.Text = (dgwMustakil.Rows[e.RowIndex].Cells[4].Value.ToString());
-                txtMustakilKat.Text = (dgwMustakil.Rows[e.RowIndex].Cells[5].Value.ToString());
-                txtMustakilTuvaletBanyo.Text = (dgwMustakil.Rows[e.RowIndex].Cells[6].Value.ToString());
+                //seçilen indexteki tüm satırı seçsin diye tanımladım.
+                dgwMustakil.Rows[e.RowIndex].Selected = true;
 
-                //Burada da eğer ilgili sutündaki değer satılık'a eşitse satılık radio butonunu seçili yapsın.
-                if (dgwMustakil.Rows[e.RowIndex].Cells[7].Value.ToString() == "Satılık")
+                //Eğer seçilmiş satır null'dan farklı ise ilgili alanları sutün sayılarına göre atayacak.
+                if (dgwMustakil.Rows[e.RowIndex].Cells[e.RowIndex].Value != null)
                 {
-                    rdMustakilSatilik.Checked = true;
+                    txtIlanID.Text = (dgwMustakil.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    txtMustakilBaslik.Text = (dgwMustakil.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    txtMustakilMetrekare.Text = (dgwMustakil.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    txtMustakilOdaSalon.Text = (dgwMustakil.Rows[e.RowIndex].Cells[3].Value.ToString());
+                    txtMustakilBalkon.Text = (dgwMustakil.Rows[e.RowIndex].Cells[4].Value.ToString());
+                    txtMustakilKat.Text = (dgwMustakil.Rows[e.RowIndex].Cells[5].Value.ToString());
+                    txtMustakilTuvaletBanyo.Text = (dgwMustakil.Rows[e.RowIndex].Cells[6].Value.ToString());
+
+                    //Burada da eğer ilgili sutündaki değer satılık'a eşitse satılık radio butonunu seçili yapsın.
+                    if (dgwMustakil.Rows[e.RowIndex].Cells[7].Value.ToString() == "Satılık")
+                    {
+                        rdMustakilSatilik.Checked = true;
+                    }
+                    //Eğer kiralık ise kiralık radio butonunu seçili yapsın.
+                    else
+                    {
+                        rdMustakilKiralik.Checked = true;
+                    }
+
+                    txtMustakilFiyat.Text = (dgwMustakil.Rows[e.RowIndex].Cells[9].Value.ToString());
                 }
-                //Eğer kiralık ise kiralık radio butonunu seçili yapsın.
-                else
-                {
-                    rdMustakilKiralik.Checked = true;
-                }
-                
-                txtMustakilFiyat.Text = (dgwMustakil.Rows[e.RowIndex].Cells[9].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
             }
         }
 
         private void btnApartmanGuncelle_Click(object sender, EventArgs e)
         {
-
-            //Nesnenin alanlarına ilgili atamaları gerçekleştirmek için değişkenlere değerlerini atadım.
-            ilanID = Convert.ToInt32(txtIlanID.Text);
-            konutTipi = "Apartman";
-            ilanBaslik = txtApartmanBaslik.Text;
-            metrekare = Convert.ToInt32(txtApartmanMetrekare.Text);
-            fiyat = Convert.ToDouble(txtApartmanFiyat.Text);
-            odaSalonSayi = txtApartmanOdaSalon.Text;
-            balkonSayi = Convert.ToInt32(txtApartmanBalkon.Text);
-            toplamDaireSayisi = Convert.ToInt32(txtApartmanToplamDaire.Text);
-
-            //Satılık radio butonu seçiliyse ilanTipi'ni Satılık yapması için yazdım.
-            if (rdApartmanSatilik.Checked)
+            try
             {
-                ilanTipi = "Satılık";
+                //Nesnenin alanlarına ilgili atamaları gerçekleştirmek için değişkenlere değerlerini atadım.
+                ilanID = Convert.ToInt32(txtIlanID.Text);
+                konutTipi = "Apartman";
+                ilanBaslik = txtApartmanBaslik.Text;
+                metrekare = Convert.ToInt32(txtApartmanMetrekare.Text);
+                fiyat = Convert.ToDouble(txtApartmanFiyat.Text);
+                odaSalonSayi = txtApartmanOdaSalon.Text;
+                balkonSayi = Convert.ToInt32(txtApartmanBalkon.Text);
+                toplamDaireSayisi = Convert.ToInt32(txtApartmanToplamDaire.Text);
+
+                //Satılık radio butonu seçiliyse ilanTipi'ni Satılık yapması için yazdım.
+                if (rdApartmanSatilik.Checked)
+                {
+                    ilanTipi = "Satılık";
+                }
+                //Kiralık radio butonu seçiliyse ilanTipi'ni Kiralık yapması için yazdım.
+                else if (rdApartmanKiralik.Checked)
+                {
+                    ilanTipi = "Kiralık";
+                }
+                //Apartman nesnesini tanımladım.(ilanID'li olanı tanımladım çünkü güncellemeyi ilan id'ye göre yapıyor benim bu nesnede ihtiyacım olacak.)
+                Apartman a = new Apartman(ilanID, ilanBaslik, metrekare, fiyat, odaSalonSayi, toplamDaireSayisi, balkonSayi, ilanTipi, kullaniciID, konutTipi);
+
+                //Nesneden aldığı bilgileri kullanarak seçili olan ilan id'sine göre güncelleme yapıyor.
+                //Aşağıdaki method başarılı olursa true değeri döndürüyor.
+                //True dönerse aşağıdaki gibi bir bildirim bastırıyoruz.
+                if (a.Ilan_Guncelle())
+                {
+                    MessageBox.Show("Güncelleme Başarılı");
+                    //Daha sonra o güncellenmiş haliyle tekrar yazsın diye bu methodu çağırıyoruz.
+                    ApartmanDoldur();
+                }
             }
-            //Kiralık radio butonu seçiliyse ilanTipi'ni Kiralık yapması için yazdım.
-            else if (rdApartmanKiralik.Checked)
+            catch (Exception ex)
             {
-                ilanTipi = "Kiralık";
-            }
-            //Apartman nesnesini tanımladım.(ilanID'li olanı tanımladım çünkü güncellemeyi ilan id'ye göre yapıyor benim bu nesnede ihtiyacım olacak.)
-            Apartman a = new Apartman(ilanID,ilanBaslik,metrekare,fiyat,odaSalonSayi,toplamDaireSayisi,balkonSayi,ilanTipi,kullaniciID,konutTipi);
-
-            //Nesneden aldığı bilgileri kullanarak seçili olan ilan id'sine göre güncelleme yapıyor.
-            //Aşağıdaki method başarılı olursa true değeri döndürüyor.
-            //True dönerse aşağıdaki gibi bir bildirim bastırıyoruz.
-            if (a.Ilan_Guncelle())
-            {
-                MessageBox.Show("Güncelleme Başarılı");
-                //Daha sonra o güncellenmiş haliyle tekrar yazsın diye bu methodu çağırıyoruz.
-                ApartmanDoldur();
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
             }
         }
 
@@ -649,31 +728,38 @@ namespace EmlakOtomasyonu
         //Bunu yapmamın nedeni güncelleme yaparken buradan seçip onda göre değerleri değiştirip tekrardan yerine koyması için yaptım.
         private void dgwApartman_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            //seçilen indexteki tüm satırı seçsin diye tanımladım.
-            dgwApartman.Rows[e.RowIndex].Selected = true;
-
-            //Eğer seçilmiş satır null'dan farklı ise ilgili alanları sutün sayılarına göre atayacak.
-            if (dgwApartman.Rows[e.RowIndex].Cells[e.RowIndex].Value != null)
+            try
             {
-                txtIlanID.Text = (dgwApartman.Rows[e.RowIndex].Cells[0].Value.ToString());
-                txtApartmanBaslik.Text = (dgwApartman.Rows[e.RowIndex].Cells[1].Value.ToString());
-                txtApartmanMetrekare.Text = (dgwApartman.Rows[e.RowIndex].Cells[2].Value.ToString());
-                txtApartmanOdaSalon.Text = (dgwApartman.Rows[e.RowIndex].Cells[3].Value.ToString());
-                txtApartmanBalkon.Text = (dgwApartman.Rows[e.RowIndex].Cells[4].Value.ToString());
-                txtApartmanToplamDaire.Text = (dgwApartman.Rows[e.RowIndex].Cells[5].Value.ToString());
+                //seçilen indexteki tüm satırı seçsin diye tanımladım.
+                dgwApartman.Rows[e.RowIndex].Selected = true;
 
-                //Burada da eğer ilgili sutündaki değer satılık'a eşitse satılık radio butonunu seçili yapsın.
-                if (dgwApartman.Rows[e.RowIndex].Cells[6].Value.ToString() == "Satılık")
+                //Eğer seçilmiş satır null'dan farklı ise ilgili alanları sutün sayılarına göre atayacak.
+                if (dgwApartman.Rows[e.RowIndex].Cells[e.RowIndex].Value != null)
                 {
-                    rdApartmanSatilik.Checked = true;
-                }
-                //Eğer kiralık ise kiralık radio butonunu seçili yapsın.
-                else
-                {
-                    rdApartmanKiralik.Checked = true;
-                }
+                    txtIlanID.Text = (dgwApartman.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    txtApartmanBaslik.Text = (dgwApartman.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    txtApartmanMetrekare.Text = (dgwApartman.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    txtApartmanOdaSalon.Text = (dgwApartman.Rows[e.RowIndex].Cells[3].Value.ToString());
+                    txtApartmanBalkon.Text = (dgwApartman.Rows[e.RowIndex].Cells[4].Value.ToString());
+                    txtApartmanToplamDaire.Text = (dgwApartman.Rows[e.RowIndex].Cells[5].Value.ToString());
 
-                txtApartmanFiyat.Text = (dgwApartman.Rows[e.RowIndex].Cells[8].Value.ToString());
+                    //Burada da eğer ilgili sutündaki değer satılık'a eşitse satılık radio butonunu seçili yapsın.
+                    if (dgwApartman.Rows[e.RowIndex].Cells[6].Value.ToString() == "Satılık")
+                    {
+                        rdApartmanSatilik.Checked = true;
+                    }
+                    //Eğer kiralık ise kiralık radio butonunu seçili yapsın.
+                    else
+                    {
+                        rdApartmanKiralik.Checked = true;
+                    }
+
+                    txtApartmanFiyat.Text = (dgwApartman.Rows[e.RowIndex].Cells[8].Value.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
             }
         }
 
@@ -681,133 +767,164 @@ namespace EmlakOtomasyonu
         //Bunu yapmamın nedeni güncelleme yaparken buradan seçip onda göre değerleri değiştirip tekrardan yerine koyması için yaptım.
         private void dgwDaire_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            //seçilen indexteki tüm satırı seçsin diye tanımladım.
-            dgwDaire.Rows[e.RowIndex].Selected = true;
-
-            //Eğer seçilmiş satır null'dan farklı ise ilgili alanları sutün sayılarına göre atayacak.
-            if (dgwDaire.Rows[e.RowIndex].Cells[e.RowIndex].Value != null)
+            try
             {
-                txtIlanID.Text = (dgwDaire.Rows[e.RowIndex].Cells[0].Value.ToString());
-                txtDaireBaslik.Text = (dgwDaire.Rows[e.RowIndex].Cells[1].Value.ToString());
-                txtDaireMetrekare.Text = (dgwDaire.Rows[e.RowIndex].Cells[2].Value.ToString());
-                txtDaireOdaSalon.Text = (dgwDaire.Rows[e.RowIndex].Cells[3].Value.ToString());
-                txtDaireBalkon.Text = (dgwDaire.Rows[e.RowIndex].Cells[4].Value.ToString());
-                txtDaireTuvaletBanyo.Text = (dgwDaire.Rows[e.RowIndex].Cells[5].Value.ToString());
+                //seçilen indexteki tüm satırı seçsin diye tanımladım.
+                dgwDaire.Rows[e.RowIndex].Selected = true;
 
-                //Burada da eğer ilgili sutündaki değer satılık'a eşitse satılık radio butonunu seçili yapsın.
-                if (dgwDaire.Rows[e.RowIndex].Cells[6].Value.ToString() == "Satılık")
+                //Eğer seçilmiş satır null'dan farklı ise ilgili alanları sutün sayılarına göre atayacak.
+                if (dgwDaire.Rows[e.RowIndex].Cells[e.RowIndex].Value != null)
                 {
-                    rdDaireSatilik.Checked = true;
+                    txtIlanID.Text = (dgwDaire.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    txtDaireBaslik.Text = (dgwDaire.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    txtDaireMetrekare.Text = (dgwDaire.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    txtDaireOdaSalon.Text = (dgwDaire.Rows[e.RowIndex].Cells[3].Value.ToString());
+                    txtDaireBalkon.Text = (dgwDaire.Rows[e.RowIndex].Cells[4].Value.ToString());
+                    txtDaireTuvaletBanyo.Text = (dgwDaire.Rows[e.RowIndex].Cells[5].Value.ToString());
+
+                    //Burada da eğer ilgili sutündaki değer satılık'a eşitse satılık radio butonunu seçili yapsın.
+                    if (dgwDaire.Rows[e.RowIndex].Cells[6].Value.ToString() == "Satılık")
+                    {
+                        rdDaireSatilik.Checked = true;
+                    }
+                    //Eğer kiralık ise kiralık radio butonunu seçili yapsın.
+                    else
+                    {
+                        rdDaireKiralik.Checked = true;
+                    }
+
+                    txtDaireFiyat.Text = (dgwDaire.Rows[e.RowIndex].Cells[8].Value.ToString());
                 }
-                //Eğer kiralık ise kiralık radio butonunu seçili yapsın.
-                else
-                {
-                    rdDaireKiralik.Checked = true;
-                }
-                
-                txtDaireFiyat.Text = (dgwDaire.Rows[e.RowIndex].Cells[8].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
             }
         }
 
         private void btnDaireGuncelle_Click(object sender, EventArgs e)
         {
-            //Nesnenin alanlarına ilgili atamaları gerçekleştirmek için değişkenlere değerlerini atadım.
-            konutTipi = "Daire";
-            ilanID = Convert.ToInt32(txtIlanID.Text);
-            ilanBaslik = txtDaireBaslik.Text;
-            metrekare = Convert.ToInt32(txtDaireMetrekare.Text);
-            fiyat = Convert.ToDouble(txtDaireFiyat.Text);
-            odaSalonSayi = txtDaireOdaSalon.Text;
-            balkonSayi = Convert.ToInt32(txtDaireBalkon.Text);
-            tuvaletBanyoSayi = txtDaireTuvaletBanyo.Text;
+            try
+            {
+                //Nesnenin alanlarına ilgili atamaları gerçekleştirmek için değişkenlere değerlerini atadım.
+                konutTipi = "Daire";
+                ilanID = Convert.ToInt32(txtIlanID.Text);
+                ilanBaslik = txtDaireBaslik.Text;
+                metrekare = Convert.ToInt32(txtDaireMetrekare.Text);
+                fiyat = Convert.ToDouble(txtDaireFiyat.Text);
+                odaSalonSayi = txtDaireOdaSalon.Text;
+                balkonSayi = Convert.ToInt32(txtDaireBalkon.Text);
+                tuvaletBanyoSayi = txtDaireTuvaletBanyo.Text;
 
-            
-            //Satılık radio butonu seçiliyse ilanTipi'ni Satılık yapması için yazdım.
-            if (rdDaireSatilik.Checked)
-            {
-                ilanTipi = "Satılık";
-            }
-            //Kiralık radio butonu seçiliyse ilanTipi'ni Kiralık yapması için yazdım.
-            else if (rdDaireKiralik.Checked)
-            {
-                ilanTipi = "Kiralık";
-            }
 
-            //Daire nesnesini tanımladım. (ilanID'li olanı tanımladım çünkü güncellemeyi ilan id'ye göre yapıyor benim bu nesnede ihtiyacım olacak.)
-            Daire d = new Daire(ilanID,ilanBaslik, metrekare, fiyat, odaSalonSayi, tuvaletBanyoSayi, balkonSayi, ilanTipi, kullaniciID, konutTipi);
-            
-            //Nesneden aldığı bilgileri kullanarak seçili olan ilan id'sine göre güncelleme yapıyor.
-            //Aşağıdaki method başarılı olursa true değeri döndürüyor.
-            //True dönerse aşağıdaki gibi bir bildirim bastırıyoruz.
-            if (d.Ilan_Guncelle())
+                //Satılık radio butonu seçiliyse ilanTipi'ni Satılık yapması için yazdım.
+                if (rdDaireSatilik.Checked)
+                {
+                    ilanTipi = "Satılık";
+                }
+                //Kiralık radio butonu seçiliyse ilanTipi'ni Kiralık yapması için yazdım.
+                else if (rdDaireKiralik.Checked)
+                {
+                    ilanTipi = "Kiralık";
+                }
+
+                //Daire nesnesini tanımladım. (ilanID'li olanı tanımladım çünkü güncellemeyi ilan id'ye göre yapıyor benim bu nesnede ihtiyacım olacak.)
+                Daire d = new Daire(ilanID, ilanBaslik, metrekare, fiyat, odaSalonSayi, tuvaletBanyoSayi, balkonSayi, ilanTipi, kullaniciID, konutTipi);
+
+                //Nesneden aldığı bilgileri kullanarak seçili olan ilan id'sine göre güncelleme yapıyor.
+                //Aşağıdaki method başarılı olursa true değeri döndürüyor.
+                //True dönerse aşağıdaki gibi bir bildirim bastırıyoruz.
+                if (d.Ilan_Guncelle())
+                {
+                    MessageBox.Show("Guncelleme Başarılı");
+                    //Daha sonra o güncellenmiş haliyle tekrar yazsın diye bu methodu çağırıyoruz.
+                    DaireDoldur();
+                }
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Guncelleme Başarılı");
-                //Daha sonra o güncellenmiş haliyle tekrar yazsın diye bu methodu çağırıyoruz.
-                DaireDoldur();
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
             }
         }
-        
+
         private void btnMustakilSil_Click(object sender, EventArgs e)
         {
-            
-            
-            //ilan id'yi yine form ekranında gizlemiştim.
-            //Tablodan seçilmiş bir değeri ilanID label'ına atıyor.
-            ilanID = Convert.ToInt32(txtIlanID.Text);
-
-            //Mustakil Nesnesi tanımladım.(ilanID'li olanı tanımladım çünkü silmeyi ilan id'ye göre yapıyor benim bu nesnede ihtiyacım olacak.)
-            Mustakil m = new Mustakil(ilanID);
-
-            //Nesneden aldığı ilan id değeriyle aşağıdaki methodu çalıştırıyor
-            //Bu method sayesinde ilan id'ye göre ilanı sildirtiyorum.
-            //Sildiğinde true değer dönüyor ve aşağıdaki mesajı bastırıyorum.
-            if (m.KonutSil())
+            try
             {
-                MessageBox.Show("İlan Silindi !");
-                //Silinmiş haliyle tekrardan tabloyu dolduruyorum.
-                MustakilDoldur();
+                //ilan id'yi yine form ekranında gizlemiştim.
+                //Tablodan seçilmiş bir değeri ilanID label'ına atıyor.
+                ilanID = Convert.ToInt32(txtIlanID.Text);
+
+                //Mustakil Nesnesi tanımladım.(ilanID'li olanı tanımladım çünkü silmeyi ilan id'ye göre yapıyor benim bu nesnede ihtiyacım olacak.)
+                Mustakil m = new Mustakil(ilanID);
+
+                //Nesneden aldığı ilan id değeriyle aşağıdaki methodu çalıştırıyor
+                //Bu method sayesinde ilan id'ye göre ilanı sildirtiyorum.
+                //Sildiğinde true değer dönüyor ve aşağıdaki mesajı bastırıyorum.
+                if (m.KonutSil())
+                {
+                    MessageBox.Show("İlan Silindi !");
+                    //Silinmiş haliyle tekrardan tabloyu dolduruyorum.
+                    MustakilDoldur();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
             }
         }
 
         private void btnApartmanSil_Click(object sender, EventArgs e)
         {
-            
-            //ilan id'yi yine form ekranında gizlemiştim.
-            //Tablodan seçilmiş bir değeri ilanID label'ına atıyor.
-            ilanID = Convert.ToInt32(txtIlanID.Text);
-
-            //Apartman Nesnesi tanımladım.(ilanID'li olanı tanımladım çünkü silmeyi ilan id'ye göre yapıyor benim bu nesnede ihtiyacım olacak.)
-            Apartman a = new Apartman(ilanID);
-
-            //Nesneden aldığı ilan id değeriyle aşağıdaki methodu çalıştırıyor
-            //Bu method sayesinde ilan id'ye göre ilanı sildirtiyorum.
-            //Sildiğinde true değer dönüyor ve aşağıdaki mesajı bastırıyorum.
-            if (a.KonutSil())
+            try
             {
-                MessageBox.Show("İlan Silindi !");
-                //Silinmiş haliyle tekrardan tabloyu dolduruyorum.
-                ApartmanDoldur();
+                //ilan id'yi yine form ekranında gizlemiştim.
+                //Tablodan seçilmiş bir değeri ilanID label'ına atıyor.
+                ilanID = Convert.ToInt32(txtIlanID.Text);
+
+                //Apartman Nesnesi tanımladım.(ilanID'li olanı tanımladım çünkü silmeyi ilan id'ye göre yapıyor benim bu nesnede ihtiyacım olacak.)
+                Apartman a = new Apartman(ilanID);
+
+                //Nesneden aldığı ilan id değeriyle aşağıdaki methodu çalıştırıyor
+                //Bu method sayesinde ilan id'ye göre ilanı sildirtiyorum.
+                //Sildiğinde true değer dönüyor ve aşağıdaki mesajı bastırıyorum.
+                if (a.KonutSil())
+                {
+                    MessageBox.Show("İlan Silindi !");
+                    //Silinmiş haliyle tekrardan tabloyu dolduruyorum.
+                    ApartmanDoldur();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
             }
         }
 
         private void btnDaireSil_Click(object sender, EventArgs e)
         {
-            
-            //ilan id'yi yine form ekranında gizlemiştim.
-            //Tablodan seçilmiş bir değeri ilanID label'ına atıyor.
-            ilanID = Convert.ToInt32(txtIlanID.Text);
-
-            //Apartman Nesnesi tanımladım.(ilanID'li olanı tanımladım çünkü silmeyi ilan id'ye göre yapıyor benim bu nesnede ihtiyacım olacak.)
-            Daire d = new Daire(ilanID);
-
-            //Nesneden aldığı ilan id değeriyle aşağıdaki methodu çalıştırıyor
-            //Bu method sayesinde ilan id'ye göre ilanı sildirtiyorum.
-            //Sildiğinde true değer dönüyor ve aşağıdaki mesajı bastırıyorum.
-            if (d.KonutSil())
+            try
             {
-                MessageBox.Show("İlan Silindi !");
-                //Silinmiş haliyle tekrardan tabloyu dolduruyorum.
-                DaireDoldur();
+                //ilan id'yi yine form ekranında gizlemiştim.
+                //Tablodan seçilmiş bir değeri ilanID label'ına atıyor.
+                ilanID = Convert.ToInt32(txtIlanID.Text);
+
+                //Apartman Nesnesi tanımladım.(ilanID'li olanı tanımladım çünkü silmeyi ilan id'ye göre yapıyor benim bu nesnede ihtiyacım olacak.)
+                Daire d = new Daire(ilanID);
+
+                //Nesneden aldığı ilan id değeriyle aşağıdaki methodu çalıştırıyor
+                //Bu method sayesinde ilan id'ye göre ilanı sildirtiyorum.
+                //Sildiğinde true değer dönüyor ve aşağıdaki mesajı bastırıyorum.
+                if (d.KonutSil())
+                {
+                    MessageBox.Show("İlan Silindi !");
+                    //Silinmiş haliyle tekrardan tabloyu dolduruyorum.
+                    DaireDoldur();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
             }
         }
 
@@ -834,38 +951,59 @@ namespace EmlakOtomasyonu
             //Formda bulunan tüm girilmiş değerleri temizletmek için tanımladığım methodu çağırıyorum.
             DetayliAra();
         }
-        
+
         private void btnDaireKomisyonHesap_Click(object sender, EventArgs e)
         {
-            //Daire'deki Komisyon oranını hesaplayıp ekrandaki textbox'a yazması için kullandım.
-            //fiyat'ı tanımladım.
-            fiyat = Convert.ToDouble(txtDaireFiyat.Text);
-            //Burada yapıcı method'la fiyatı nesneye göndermiş oldum.
-            Daire daire = new Daire(fiyat);
-            //Komisyon hesapla metodunu ezdirerek hesaplattırdım.
-            txtDaireKomisyon.Text = daire.KomisyonHesapla().ToString();
+            try
+            {
+                //Daire'deki Komisyon oranını hesaplayıp ekrandaki textbox'a yazması için kullandım.
+                //fiyat'ı tanımladım.
+                fiyat = Convert.ToDouble(txtDaireFiyat.Text);
+                //Burada yapıcı method'la fiyatı nesneye göndermiş oldum.
+                Daire daire = new Daire(fiyat);
+                //Komisyon hesapla metodunu ezdirerek hesaplattırdım.
+                txtDaireKomisyon.Text = daire.KomisyonHesapla().ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
+            }
         }
 
         private void btnMustakilKomisyonHesap_Click(object sender, EventArgs e)
         {
-            //Mustakil'deki Komisyon oranını hesaplayıp ekrandaki textbox'a yazması için kullandım.
-            //Burada fiyatı tanımladım.
-            fiyat = Convert.ToDouble(txtMustakilFiyat.Text);
-            //Burada yapıcı method'la fiyatı nesneye göndermiş oldum.
-            Mustakil mustakil = new Mustakil(fiyat);
-            //Komisyon hesapla metodunu ezdirerek hesaplattırdım.
-            txtMustakilKomisyon.Text = mustakil.KomisyonHesapla().ToString();
+            try
+            {
+                //Mustakil'deki Komisyon oranını hesaplayıp ekrandaki textbox'a yazması için kullandım.
+                //Burada fiyatı tanımladım.
+                fiyat = Convert.ToDouble(txtMustakilFiyat.Text);
+                //Burada yapıcı method'la fiyatı nesneye göndermiş oldum.
+                Mustakil mustakil = new Mustakil(fiyat);
+                //Komisyon hesapla metodunu ezdirerek hesaplattırdım.
+                txtMustakilKomisyon.Text = mustakil.KomisyonHesapla().ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
+            }
         }
 
         private void btnApartmanKomisyonHesap_Click(object sender, EventArgs e)
         {
-            //Apartman'daki Komisyon oranını hesaplayıp ekrandaki textbox'a yazması için kullandım.
-            //Burada fiyatı tanımladım.
-            fiyat = Convert.ToDouble(txtApartmanFiyat.Text);
-            //Burada yapıcı method'la fiyatı nesneye göndermiş oldum.
-            Apartman s = new Apartman(fiyat);
-            //Komisyon hesapla metodunu ezdirerek hesaplattırdım.
-            txtApartmanKomisyon.Text = s.KomisyonHesapla().ToString();
+            try
+            {
+                //Apartman'daki Komisyon oranını hesaplayıp ekrandaki textbox'a yazması için kullandım.
+                //Burada fiyatı tanımladım.
+                fiyat = Convert.ToDouble(txtApartmanFiyat.Text);
+                //Burada yapıcı method'la fiyatı nesneye göndermiş oldum.
+                Apartman s = new Apartman(fiyat);
+                //Komisyon hesapla metodunu ezdirerek hesaplattırdım.
+                txtApartmanKomisyon.Text = s.KomisyonHesapla().ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops.. Bir hata ile karşılaşıldı. Lütfen Yaptığınız işlemi kontrol edip tekrar deneyin.");
+            }
         }
 
         private void KonutSekme_MouseClick(object sender, MouseEventArgs e)
